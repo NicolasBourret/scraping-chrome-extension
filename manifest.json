@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Scraping Chrome Extension",
+  "description": "Chrome Extension to store part of a website and be notifyed if this informations are updated",
+  "version": "0.0.0",
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_icon": "default_icon.png"
+  }
+}
