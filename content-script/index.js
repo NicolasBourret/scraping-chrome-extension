@@ -13,8 +13,10 @@ const addAndRemoveBorder = (e) => {
     elementsOvered.shift();
   }
   const element = e.target;
-  element.style.border = "1px solid green";
+  element.style.border = "2px solid black";
   elementsOvered.push(element);
 
   selectElement(element);
 };
+
+document.addEventListener("mouseover", addAndRemoveBorder);
