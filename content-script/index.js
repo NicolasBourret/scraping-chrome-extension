@@ -13,10 +13,17 @@ const addAndRemoveBorder = (e) => {
     elementsOvered.shift();
   }
   const element = e.target;
-  element.style.border = "2px solid black";
+  element.style.border = "1px solid green";
   elementsOvered.push(element);
 
   selectElement(element);
 };
 
-document.addEventListener("mouseover", addAndRemoveBorder);
+chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+  if (req.activateSelection) {
+    document.addEventListener("mouseover", addAndRemoveBorder);
+    sendResponse({ status: "activate" });
+  } else {
+    sendResponse({ status: "not-activate" });
+  }
+});
