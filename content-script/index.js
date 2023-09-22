@@ -19,4 +19,11 @@ const addAndRemoveBorder = (e) => {
   selectElement(element);
 };
 
-document.addEventListener("mouseover", addAndRemoveBorder);
+chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+  if (req.activateSelection) {
+    document.addEventListener("mouseover", addAndRemoveBorder);
+    sendResponse({ status: "activate" });
+  } else {
+    sendResponse({ status: "not-activate" });
+  }
+});
