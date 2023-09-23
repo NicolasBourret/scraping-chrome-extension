@@ -8,7 +8,7 @@ buttonActivateSelection.addEventListener("click", async (e) => {
     tabs[0].id,
     { activateSelection: true },
     (response) => {
-      chrome.tabs.sendMessage(tabs[0].id, { activateSelection: response });
+      console.log(response);
     }
   );
 });
