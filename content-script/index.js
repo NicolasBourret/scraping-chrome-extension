@@ -2,12 +2,12 @@ const elementWithListener = [];
 
 const addElementBorder = (event) => {
   const element = event.target;
-  element.style.border = "2px solid black";
+  element.style.outline = "2px solid black";
 };
 
 const removeElementBorder = (event) => {
   const element = event.target;
-  element.style.border = "none";
+  element.style.outline = "none";
 };
 
 const handleElementBorder = ({ target }) => {
