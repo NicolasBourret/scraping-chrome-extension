@@ -1,29 +1,27 @@
-const elementsOvered = [];
-
-const selectElement = (element) => {
-  element.addEventListener("click", () => {
-    element.style.border = "none";
-    document.removeEventListener("mouseover", addAndRemoveBorder);
-  });
-};
-
-const addAndRemoveBorder = (e) => {
-  if (elementsOvered.length > 0) {
-    elementsOvered[0].style.border = "none";
-    elementsOvered.shift();
-  }
-  const element = e.target;
+const addElementBorder = (event) => {
+  const element = event.target;
   element.style.border = "2px solid black";
-  elementsOvered.push(element);
-
-  selectElement(element);
 };
+
+const removeElementBorder = (event) => {
+  const element = event.target;
+  element.style.border = "none";
+};
+
+const handleElementBorder = ({ target }) => {
+  const element = target;
+
+  element.addEventListener("mouseover", addElementBorder);
+  element.addEventListener("mouseout", removeElementBorder);
+};
+
+document.addEventListener("click", (event) => {
+  console.log(event.target);
+});
 
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
   if (req.activateSelection) {
-    document.addEventListener("mouseover", addAndRemoveBorder);
+    document.addEventListener("mouseover", handleElementBorder);
     sendResponse({ status: "activate" });
-  } else {
-    sendResponse({ status: "not-activate" });
   }
 });
