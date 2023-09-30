@@ -34,8 +34,7 @@ const popupConfirmationButtonStyles =
 const popupCancelButtonStyles =
   ".sce-cancel-button {  background: rgba(255, 255, 255, 1); color: rgba(0, 0, 0, 1); box-shadow: 0rem 0.125rem 0.125rem rgba(0, 0, 0, 0.5); border: none; cursor: pointer; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 0.25rem; }";
 const popupCloseButtonStyles =
-  ".sce-close-button { width: 1.5rem; height: 1.5rem; background: rgba(0, 0, 0, 1); color: rgba(255, 255, 255, 1); box-shadow: 0rem 0.125rem 0.125rem rgba(0, 0, 0, 0.5); border: none; cursor: pointer; border-radius: 50%; position: absolute; right: -2rem; top: -2rem; }";
-const popupIconStyles = ".sce-icon { width: 0.75rem; }";
+  ".sce-close-button { width: 1.5rem; height: 1.5rem; background: rgba(0, 0, 0, 1); box-shadow: 0rem 0.125rem 0.125rem rgba(0, 0, 0, 0.5); border: none; cursor: pointer; border-radius: 50%; position: absolute; right: -2rem; top: -2rem; padding: 0; }";
 
 const injectCss = (styles) => {
   const element = document.createElement("style");
@@ -79,8 +78,9 @@ const createPopup = (element) => {
     document.body.removeChild(popupOverlay);
   });
 
-  const popupIcon = document.createElement("img");
-  popupIcon.classList.add("sce-icon");
+  const popupIcon = document.createElement("svg");
+  popupIcon.innerHTML =
+    "<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 384 512' stroke='white' fill='white'><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d='M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z'/></svg>";
 
   popupButtonsContainer.appendChild(popupCancelButton);
   popupButtonsContainer.appendChild(popupConfirmButton);
@@ -104,8 +104,7 @@ const clickHandler = (event) => {
     popupButtonsContainerStyles +
     popupConfirmationButtonStyles +
     popupCancelButtonStyles +
-    popupCloseButtonStyles +
-    popupIconStyles;
+    popupCloseButtonStyles;
   injectCss(popupStyles);
 
   const element = event.target;
