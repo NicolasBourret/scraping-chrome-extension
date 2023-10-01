@@ -1,9 +1,6 @@
-const elementWithListener = [];
+import { addElementBorder } from "./events";
 
-const addElementBorder = (event) => {
-  const element = event.target;
-  element.style.outline = "2px solid black";
-};
+const elementWithListener = [];
 
 const removeElementBorder = (event) => {
   const element = event.target;
@@ -34,7 +31,7 @@ const popupConfirmationButtonStyles =
 const popupCancelButtonStyles =
   ".sce-cancel-button {  background: rgba(255, 255, 255, 1); color: rgba(0, 0, 0, 1); box-shadow: 0rem 0.125rem 0.125rem rgba(0, 0, 0, 0.5); border: none; cursor: pointer; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 0.25rem; }";
 const popupCloseButtonStyles =
-  ".sce-close-button { width: 1.5rem; height: 1.5rem; background: rgba(0, 0, 0, 1); box-shadow: 0rem 0.125rem 0.125rem rgba(0, 0, 0, 0.5); border: none; cursor: pointer; border-radius: 50%; position: absolute; right: -2rem; top: -2rem; padding: 0; }";
+  ".sce-close-button { width: 1.5rem; height: 1.5rem; background: rgba(0, 0, 0, 1); box-shadow: 0rem 0.125rem 0.125rem rgba(0, 0, 0, 0.5); border: none; cursor: pointer; border-radius: 50%; position: absolute; right: -2rem; top: -2rem; padding: 0; display: flex; align-items: center; justify-content: center; }";
 
 const injectCss = (styles) => {
   const element = document.createElement("style");
