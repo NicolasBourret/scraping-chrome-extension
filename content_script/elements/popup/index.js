@@ -1,5 +1,6 @@
 import { createButton, createHeadingTwo } from "../commons";
 import { removeElement } from "../../eventHandlers";
+import { createNotification } from "../notification";
 
 export const createPopup = (element) => {
   const popupOverlay = document.createElement("div");
@@ -13,7 +14,8 @@ export const createPopup = (element) => {
 
   const popupTitle = createHeadingTwo("Voulez-vous sauvegarder cet élément ?");
   const popupConfirmButton = createButton("Sauvegarder", "sce-button", () => {
-    console.log(element);
+    const notification = createNotification();
+    document.body.appendChild(notification);
     removeElement(popupOverlay);
   });
   const popupCancelButton = createButton("Annuler", "sce-button-cancel", () =>
@@ -34,5 +36,6 @@ export const createPopup = (element) => {
   popupCloseButton.appendChild(popupIcon);
   popupContainer.appendChild(popupCloseButton);
   popupOverlay.appendChild(popupContainer);
-  document.body.appendChild(popupOverlay);
+
+  return popupOverlay;
 };
