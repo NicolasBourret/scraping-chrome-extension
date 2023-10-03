@@ -1,8 +1,20 @@
 import { createPopup } from "./elements/popup";
-import { removeEvent, handleElementBorder } from "./eventHandlers";
+import {
+  addElementBorder,
+  removeElementBorder,
+  removeEvent,
+} from "./eventHandlers";
 import { injectCss, notifiactionStyles, popupStyles } from "./styles";
 
 const elementWithListener = [];
+
+const handleElementBorder = ({ target }) => {
+  const element = target;
+
+  element.addEventListener("mouseover", addElementBorder);
+  element.addEventListener("mouseout", removeElementBorder);
+  elementWithListener.push(element);
+};
 
 const clickHandler = (event) => {
   document.removeEventListener("mouseover", handleElementBorder);
