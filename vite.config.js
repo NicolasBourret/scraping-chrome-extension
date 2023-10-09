@@ -6,6 +6,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         popup: "popup/index.html",
+        tab: "tab/index.html",
         content_script: "content_script/index.js",
       },
       output: {
