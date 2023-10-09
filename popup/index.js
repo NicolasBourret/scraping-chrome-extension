@@ -1,4 +1,5 @@
 const buttonActivateSelection = document.querySelector("#activateSelection");
+const tabLink = document.querySelector("#tabLink");
 
 buttonActivateSelection.addEventListener("click", async (e) => {
   const queryOptions = { active: true, currentWindow: true };
@@ -11,4 +12,12 @@ buttonActivateSelection.addEventListener("click", async (e) => {
       console.log(response);
     }
   );
+});
+
+tabLink.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  chrome.tabs.create({
+    url: "../tab/index.html",
+  });
 });
