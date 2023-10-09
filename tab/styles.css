@@ -1,0 +1,22 @@
+:root {
+  --pure-black: #000000;
+  --pure-white: #ffffff;
+  --half-pure-black: rgba(0, 0, 0, 0.5);
+  --conatiners-shadow: 0rem 0.125rem 0.125rem var(--half-pure-black);
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  padding: 4rem;
+  margin: 0;
+}
+
+.heading-one {
+  color: var(--pure-black);
+  text-transform: capitalize;
+  font-size: 2rem;
+  margin-bottom: 5rem;
+}
