@@ -7,7 +7,7 @@
     "default_popup": "popup/index.html",
     "default_icon": "icons/default_icon.png"
   },
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "storage"],
   "icons": {
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",
@@ -19,5 +19,8 @@
       "js": ["content_script/index.js"],
       "matches": ["*://*/*"]
     }
-  ]
+  ],
+  "background": {
+    "service_worker": "background/index.js"
+  }
 }
