@@ -21,9 +21,21 @@ export const createPopup = (element) => {
   const popupCancelButton = createButton("Annuler", "sce-button-cancel", () =>
     removeElement(popupOverlay)
   );
-  const popupCloseButton = createButton("", "sce-close-button", () =>
-    removeElement(popupOverlay)
-  );
+  const popupCloseButton = createButton("", "sce-close-button", async () => {
+    const itemsList = await chrome.storage.sync.get("itemsList");
+
+    if (itemsList) {
+      chrome.storage.sync.set({ itemsList: [...itemsList, element] });
+    } else {
+      chrome.storage.sync.set({ itemsList: [] });
+    }
+    /**
+     * on récupère les données du storage
+     * Si le storage est vide on l'initialise
+     * Sinon on ajoute l'élément à la suite des autres déjà présent
+     */
+    removeElement(popupOverlay);
+  });
 
   const popupIcon = document.createElement("svg");
   popupIcon.innerHTML =
