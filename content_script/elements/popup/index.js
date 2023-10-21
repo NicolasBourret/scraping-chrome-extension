@@ -17,11 +17,25 @@ export const createPopup = (element) => {
     "Sauvegarder",
     "sce-button",
     async () => {
-      console.log(element);
       const itemsList = await chrome.storage.sync.get("itemsList");
+      const classList = element.classList;
+      const path = `${element.nodeName.toLowerCase()}.${Array.from(
+        classList
+      ).join(".")}`;
 
       if (Array.isArray(itemsList)) {
-        chrome.storage.sync.set({ itemsList: [...itemsList, element] });
+        chrome.storage.sync.set({
+          itemsList: [
+            ...itemsList,
+            {
+              url: element.baseURI,
+              content: element.textContent,
+              path,
+              parent: parentNode,
+              node: element,
+            },
+          ],
+        });
       } else {
         chrome.storage.sync.set({ itemsList: [element] });
       }
