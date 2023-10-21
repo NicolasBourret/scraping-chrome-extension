@@ -13,29 +13,31 @@ export const createPopup = (element) => {
   popupButtonsContainer.classList.add("sce-buttons-container");
 
   const popupTitle = createHeadingTwo("Voulez-vous sauvegarder cet élément ?");
-  const popupConfirmButton = createButton("Sauvegarder", "sce-button", () => {
-    const notification = createNotification();
-    document.body.appendChild(notification);
-    removeElement(popupOverlay);
-  });
+  const popupConfirmButton = createButton(
+    "Sauvegarder",
+    "sce-button",
+    async () => {
+      console.log(element);
+      const itemsList = await chrome.storage.sync.get("itemsList");
+
+      if (Array.isArray(itemsList)) {
+        chrome.storage.sync.set({ itemsList: [...itemsList, element] });
+      } else {
+        chrome.storage.sync.set({ itemsList: [element] });
+      }
+
+      const notification = createNotification();
+      document.body.appendChild(notification);
+
+      removeElement(popupOverlay);
+    }
+  );
   const popupCancelButton = createButton("Annuler", "sce-button-cancel", () =>
     removeElement(popupOverlay)
   );
-  const popupCloseButton = createButton("", "sce-close-button", async () => {
-    const itemsList = await chrome.storage.sync.get("itemsList");
-
-    if (itemsList) {
-      chrome.storage.sync.set({ itemsList: [...itemsList, element] });
-    } else {
-      chrome.storage.sync.set({ itemsList: [] });
-    }
-    /**
-     * on récupère les données du storage
-     * Si le storage est vide on l'initialise
-     * Sinon on ajoute l'élément à la suite des autres déjà présent
-     */
-    removeElement(popupOverlay);
-  });
+  const popupCloseButton = createButton("", "sce-close-button", () =>
+    removeElement(popupOverlay)
+  );
 
   const popupIcon = document.createElement("svg");
   popupIcon.innerHTML =
