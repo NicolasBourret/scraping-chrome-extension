@@ -19,8 +19,5 @@
       "js": ["content_script/index.js"],
       "matches": ["*://*/*"]
     }
-  ],
-  "background": {
-    "service_worker": "background/index.js"
-  }
+  ]
 }
