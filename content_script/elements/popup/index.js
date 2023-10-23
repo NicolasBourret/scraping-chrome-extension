@@ -1,6 +1,7 @@
 import { createButton, createHeadingTwo } from "../commons";
 import { removeElement } from "../../eventHandlers";
 import { createNotification } from "../notification";
+import { initItemsList, updateItemsList } from "./handlers";
 
 export const createPopup = (element) => {
   const popupOverlay = document.createElement("div");
@@ -22,22 +23,12 @@ export const createPopup = (element) => {
       const path = `${element.nodeName.toLowerCase()}.${Array.from(
         classList
       ).join(".")}`;
+      element.path = path;
 
       if (Array.isArray(itemsList)) {
-        chrome.storage.sync.set({
-          itemsList: [
-            ...itemsList,
-            {
-              url: element.baseURI,
-              content: element.textContent,
-              path,
-              parent: parentNode,
-              node: element,
-            },
-          ],
-        });
+        updateItemsList(itemsList, element);
       } else {
-        chrome.storage.sync.set({ itemsList: [element] });
+        initItemsList([element]);
       }
 
       const notification = createNotification();
@@ -46,6 +37,7 @@ export const createPopup = (element) => {
       removeElement(popupOverlay);
     }
   );
+
   const popupCancelButton = createButton("Annuler", "sce-button-cancel", () =>
     removeElement(popupOverlay)
   );
