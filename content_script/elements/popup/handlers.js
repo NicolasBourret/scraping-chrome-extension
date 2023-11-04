@@ -1,5 +1,4 @@
 export const updateItemsList = ({ itemsList }, item) => {
-  console.log("update", itemsList);
   const updatedList = [
     ...itemsList,
     {
@@ -8,7 +7,6 @@ export const updateItemsList = ({ itemsList }, item) => {
       path: item.path,
     },
   ];
-  console.log("update", updatedList);
   chrome.storage.sync.set({
     itemsList: updatedList,
   });

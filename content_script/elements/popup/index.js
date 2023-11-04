@@ -25,7 +25,6 @@ export const createPopup = (element) => {
       ).join(".")}`;
       element.path = path;
 
-      console.log(itemsList);
       if (Object.keys(itemsList).length > 0) {
         updateItemsList(itemsList, element);
       } else {
