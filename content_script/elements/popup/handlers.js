@@ -1,15 +1,26 @@
-export const updateItemsList = (itemsList, item) => ({
-  itemsList: [
+export const updateItemsList = ({ itemsList }, item) => {
+  console.log("update", itemsList);
+  const updatedList = [
     ...itemsList,
     {
       url: item.baseURI,
-      content: item.textContent,
+      content: item.textContent.trim(),
       path: item.path,
-      parent: item.parentNode,
-      node: item,
     },
-  ],
-});
+  ];
+  console.log("update", updatedList);
+  chrome.storage.sync.set({
+    itemsList: updatedList,
+  });
+};
 
-export const initItemsList = (itemsList) =>
-  chrome.storage.sync.set({ itemsList });
+export const initItemsList = (item) => {
+  const itemToStore = {
+    url: item.baseURI,
+    content: item.textContent.trim(),
+    path: item.path,
+  };
+  chrome.storage.sync.set({
+    itemsList: [itemToStore],
+  });
+};
