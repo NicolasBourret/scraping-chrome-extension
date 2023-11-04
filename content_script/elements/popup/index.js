@@ -25,10 +25,10 @@ export const createPopup = (element) => {
       ).join(".")}`;
       element.path = path;
 
-      if (Array.isArray(itemsList)) {
+      if (Object.keys(itemsList).length > 0) {
         updateItemsList(itemsList, element);
       } else {
-        initItemsList([element]);
+        initItemsList(element);
       }
 
       const notification = createNotification();
