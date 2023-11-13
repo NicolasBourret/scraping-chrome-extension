@@ -1,5 +1,5 @@
-import { SearchInput } from "./SearchInput";
-import { SelectInput } from "./Selectinput";
+import { InputSection } from "./InputSection/InputSection";
 import { ItemList } from "./ItemList/ItemList";
+import { MainTitle } from "./MainTitle";
 
-export { SearchInput, SelectInput, ItemList };
+export { InputSection, ItemList, MainTitle };
