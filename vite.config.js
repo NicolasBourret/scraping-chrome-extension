@@ -9,6 +9,7 @@ export default defineConfig({
         tab: "tab/index.html",
         content_script: "content_script/index.js",
         background: "background/index.js",
+        utils: "utils/index.js",
       },
       output: {
         // Créez un objet de sortie pour chaque entrée
