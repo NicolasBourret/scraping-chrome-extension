@@ -50,6 +50,7 @@ export const createElement = (type, options = {}) => {
   return element;
 };
 
+// Not real utility function because it modify something somewhere (here DOm is modified)
 export const createChilds = (childs, element) => {
   for (const child of childs) {
     const childNode = createElement(child.htmlTag, child.options);
